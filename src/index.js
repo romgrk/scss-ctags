@@ -58,6 +58,10 @@ function main() {
 
     const options = { excludes, includes, recurse }
 
+    if (files.length === 0) {
+      program.help(text => text + '\nMissing input files\n')
+    }
+
     // console.log(program)
     // console.log({ argv, files, excludes, recurse, keepAll, relative })
 
