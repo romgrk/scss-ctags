@@ -1,0 +1,99 @@
+
+$background-color: white;
+
+@mixin center {
+  text-align: center;
+}
+
+@mixin height($value) {
+  height: $value;
+}
+
+@function my-calculation-function($some-number, $another-number) {
+  @return $some-number + $another-number;
+}
+
+body {
+  background-color: $background-color;
+}
+
+@media (min-width: 600px) {
+  body {
+    background-color: black;
+  }
+}
+
+
+#root, .App {
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  &:hover {
+    color: red;
+  }
+}
+
+.ProjectDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.ProjectDetails__back {
+  padding: 0 $baseline;
+  margin: $baseline 0 $baseline;
+}
+.ProjectDetails__table {
+  width: 50%;
+}
+.ProjectDetails__table thead {
+  color: white;
+  color: $panel-header-color;
+  background-color: $panel-header-background;
+  text-align: left;
+  & th {
+    padding-left: 200px + $baseline;
+  }
+}
+.ProjectDetails__table td,
+.ProjectDetails__table th {
+  padding: 0 $baseline;
+}
+.ProjectDetails__table tbody th {
+  text-align: right;
+}
+.ProjectDetails__table td {
+  height: 30px;
+}
+.ProjectDetails__table tr *:first-child {
+  width: 200px;
+}
+.ProjectDetails__tabs {
+  flex: 1;
+}
+.ProjectDetails__files__message {
+  padding: $baseline;
+  color: white;
+  color: $panel-header-color;
+  background-color: $panel-header-background;
+}
+.ProjectDetails__report {
+  border: none;
+
+  .Rows,
+  .Columns {
+    color: $panel-header-color;
+    background-color: $panel-header-background;
+    border-bottom: none;
+  }
+
+  .Row__title,
+  .Column__title {
+    color: #fff;
+    color: $panel-header-color;
+    background-color: $panel-header-background;
+    border-color: rgba(#fff, 0.2);
+  }
+}
