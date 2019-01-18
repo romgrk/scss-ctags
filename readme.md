@@ -3,6 +3,21 @@
 
 Ctags generator for SCSS. Slightly smarter than regex-matching generators.
 
+Usage:
+```
+$ scss-ctags --help
+Usage: scss-ctags [options] <files ...>
+
+Options:
+  -V, --version            output the version number
+  -f <file>                Tagfile ("-" for stdout)
+  -R, --recurse            Search in sub-directories
+  -a, --absolute           Use absolute paths
+  -k, --keepAll            By default, add *.scss to the exclude patterns. This prevents that.
+      --exclude [pattern]  A repeatable value (default: ["*.min.js","*.min.css","*.map",".sass-cache","node_modules","build",".git"])
+  -h, --help               output usage information
+```
+
 ### Supported tags
 
 | Kind | Name |
