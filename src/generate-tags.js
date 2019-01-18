@@ -31,6 +31,17 @@ module.exports = generateTags
  * @property {string} filename
  */
 
+/**
+ * Kind character by name
+ * @type {Object}
+ */
+const kinds = {
+  'variable': 'v',
+  'mixin':    'm',
+  'function': 'f',
+  'rule':     'r',
+}
+
 
 /*
  * Functions
@@ -98,7 +109,7 @@ function tagToString(tag) {
       const variable = getChild(node, 'property', 'variable')
       const text = getValue(variable)
       const line = variable.start.line
-      const letter = 'v'
+      const letter = kinds['variable']
       // console.log(['variable', text, line])
       return `${text}\t${filename}\t${line};"\t${letter}`
     }
@@ -106,7 +117,7 @@ function tagToString(tag) {
       const identifier = getChild(node, 'identifier')
       const text = getValue(identifier)
       const line = identifier.start.line
-      const letter = 'm'
+      const letter = kinds['mixin']
       // console.log(['mixin', text, line])
       return `${text}\t${filename}\t${line};"\t${letter}`
     }
@@ -114,7 +125,7 @@ function tagToString(tag) {
       const identifier = getChild(node, 'identifier')
       const text = getValue(identifier)
       const line = identifier.start.line
-      const letter = 'f'
+      const letter = kinds['function']
       // console.log(['function', text, line])
       return `${text}\t${filename}\t${line};"\t${letter}`
     }
@@ -126,7 +137,7 @@ function tagToString(tag) {
 
       const text = parentRules.concat(getRuleText(node)).join(' ')
       const line = node.start.line
-      const letter = 'r'
+      const letter = kinds['rule']
       // console.log(['rule', text, line])
       return `${text}\t${filename}\t${line};"\t${letter}`
     }

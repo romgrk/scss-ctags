@@ -1,17 +1,19 @@
 {
   "name": "scss-ctags",
   "version": "1.1.0",
-  "description": "",
-  "main": "src/generate-tags.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "SCSS ctags generator",
+  "repository": "github:romgrk/scss-ctags",
+  "bugs": "https://github.com/romgrk/scss-ctags/issues",
   "keywords": [
     "scss",
     "ctags"
   ],
   "author": "Rom Grk <romgrk.cc@gmail.com>",
   "license": "ISC",
+  "main": "src/generate-tags.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "commander": "^2.19.0",
     "micromatch": "^3.1.10",
