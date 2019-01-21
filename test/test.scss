@@ -35,6 +35,10 @@ button {
   }
 }
 
+input[type=radio] {
+  border: 1px solid red;
+}
+
 .ProjectDetails {
   flex: 1;
   display: flex;
@@ -56,16 +60,6 @@ button {
   & th {
     padding-left: 200px + $baseline;
   }
-}
-.ProjectDetails__table td,
-.ProjectDetails__table th {
-  padding: 0 $baseline;
-}
-.ProjectDetails__table tbody th {
-  text-align: right;
-}
-.ProjectDetails__table td {
-  height: 30px;
 }
 .ProjectDetails__table tr *:first-child {
   width: 200px;

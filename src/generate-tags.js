@@ -11,10 +11,10 @@ const readFileToString = f => readFile(f).then(b => b.toString())
 const realpath = util.promisify(fs.realpath)
 const { parse, stringify } = require('scss-parser')
 
-/* util.inspect.defaultOptions = {
- *   breakLength: 120,
- *   depth: 4,
- * } */
+util.inspect.defaultOptions = {
+  breakLength: 120,
+  depth: 4,
+} 
 
 module.exports = generateTags
 
@@ -171,6 +171,9 @@ function getValue(node) {
       return `:${name}(${args})`
     }
 
+    case 'attribute':
+      return '[' + node.value.map(getValue).join('') + ']'
+
     case 'id':
       return '#' + node.value.map(getValue).join('')
 
@@ -181,7 +184,7 @@ function getValue(node) {
       return '$' + node.value
 
     default:
-      console.warning('Unexpected node', [node.type, node.value])
+      console.warn('Unexpected node', [node.type, node.value])
       return node.value
   }
 }
