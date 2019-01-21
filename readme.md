@@ -27,7 +27,7 @@ Options:
 | f | function |
 | r | rule |
 
-Nests rules. The above example will generate the tags `.Button` (line 1) and `.Button &:hover` (line 2).
+Nests rules. The example below will generate the tags `.Button` (line 1) and `.Button &:hover` (line 2).
 
 ```scss
 .Button {
@@ -38,7 +38,7 @@ Nests rules. The above example will generate the tags `.Button` (line 1) and `.B
 ```
 
 Variables are not nested for the moment, just exposed as is.
-The above example will generate the tags `$size`, `.Button`, and `$color`.
+The example below will generate the tags `$size`, `.Button`, and `$color`.
 ```scss
 $size: 1em;
 .Button {
