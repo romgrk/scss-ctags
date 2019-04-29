@@ -1,0 +1,518 @@
+@import "./_variables";
+@import "./_mixins";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; // prevent scroll
+}
+
+body {
+  position: relative;
+  background-color: $background-color;
+}
+
+#root, .App {
+  height: 100%;
+  width: 100%;
+}
+
+* { outline-color: $primary-light; }
+
+*::selection      { background: $selection-color; }
+*::-moz-selection { background: $selection-color; }
+
+
+/*
+ * Scrollbars
+ */
+
+.platform-chrome, .platform-safari, .platform-unknown {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border: 1px solid #e5e5e5;
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border: 1px solid #aaa;
+    background: #ccc;
+    // border-radius: 2px;
+    box-shadow: 0 1px 2px 1px rgba(black, 0.1);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    border: 1px solid #999;
+    background: #bbb;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    border: 1px solid #888;
+    background: #aaa;
+  }
+}
+
+.platform-firefox * {
+  /* scrollbar is thinner on firefox, therefore the colors are darker */
+  $scrollbar-thumb: #aaa;
+  $scrollbar-track: #e5e5e5;
+
+  scrollbar-color: light; /* other firefox compatibility */
+
+  scrollbar-face-color:  $scrollbar-thumb; /* firefox 63 compatibility */
+  scrollbar-track-color: $scrollbar-track; /* firefox 63 compatibility */
+
+  scrollbar-color: $scrollbar-thumb $scrollbar-track;
+
+  scrollbar-width: thin;
+}
+
+
+/*
+ * Layout
+ */
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.row > *:not(:last-child) {
+  margin-right: 10px;
+}
+.row__fill {
+  flex: 1;
+}
+.row--padded {
+  padding: 10px 5px;
+}
+.row--items-center {
+  align-items: center;
+}
+
+.padding-bottom {
+  padding-bottom: 10px;
+}
+.padding-right {
+  padding-right: 5px;
+}
+.padding-vertical {
+  padding-top:    10px;
+  padding-bottom: 10px;
+}
+.padding-horizontal {
+  padding-left:  5px;
+  padding-right: 5px;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.vbox {
+  display: flex;
+  flex-direction: column;
+}
+.hbox {
+  display: flex;
+  flex-direction: row;
+}
+.box--padded {
+  padding: 10px;
+}
+.box__fill {
+  flex: 1 1;
+}
+
+.fill-dimensions {
+  width: 100%;
+  height: 100%;
+}
+
+
+/*
+ * Components
+ */
+
+
+.App {
+  display: flex;
+  flex-direction: row;
+}
+.App__sidebar {
+  flex: 0 0 auto;
+}
+.App__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.Login {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.Login__side {
+  flex: 0 0 500px;
+  display: flex;
+  flex-direction: column;
+  color: $text-color;
+  background-color: $panel-background;
+  border-right: 10px solid $accent;
+}
+.Login__content {
+  flex: 1;
+  padding: 80px;
+}
+.Login__footer {
+  height: 40px;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid rgba(white, 0.5);
+  font-size: 13px;
+}
+.Login__image {
+  flex: 1;
+  background: url('../images/login-cover.jpg');
+  background-size: cover;
+  position: relative;
+}
+.Login__image::after {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  background-color: rgba(0,0,0,0.4);
+  height: 100%;
+  width: 100%;
+}
+.Login__header {
+  position: absolute;
+  z-index: 1;
+  top: 80px;
+  right: 80px;
+  color: white;
+}
+.Login__title {
+  opacity: 0.6;
+  font-size: 50px;
+
+}
+.Login__text {
+  margin-bottom: 35px;
+  font-size: 10pt;
+}
+.Login__fields {
+  margin-bottom: $baseline;
+}
+.Login__input {
+  margin-bottom: 2 * $baseline;
+}
+.Login__submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.Login__error {
+  word-break: break-word;
+  border: 1px solid red;
+  border-radius: 2px;
+  padding: 10px;
+  color: red; // #ffe4e7;
+  background-color: #ff000029;
+}
+
+
+.Sidebar {
+  width: 220px;
+  height: 100%;
+  color: $text-color-light;
+  background-color: $primary;
+  padding: 20px;
+}
+.Sidebar__title {
+  text-align: center;
+}
+
+
+.Header__nav {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: $primary-light;
+  padding: 0 20px;
+}
+.Header__nav > *:not(:last-child) {
+  margin-right: 20px;
+}
+.Header__title {
+  color: white;
+  font-family: 'Ubuntu';
+  font-size: 1.5em;
+}
+.Header__user {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 32px;
+}
+// .Header__bar {}
+
+
+.ProjectsContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-top: 1px solid $panel-border;
+}
+
+
+.ProjectFilter {
+  background-color: $panel-background;
+  color: $primary;
+  padding: 20px 20px;
+}
+
+
+.ProjectTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  flex: 1;
+  overflow: hidden;
+}
+.ProjectTable__head {
+  color: $panel-header-color;
+  background-color: $panel-header-background;
+  background-color: darken($panel-header-background, 10%);
+}
+.ProjectTable tbody tr {
+  cursor: pointer;
+}
+.ProjectTable tbody tr:nth-child(2n) {
+  color: $text-color;
+  background-color: $background-color-highlight;
+}
+.ProjectTable tbody tr:hover {
+  color: $accent;
+}
+.ProjectTable__researcher th {
+  text-align: left;
+  width: 60px;
+}
+
+
+.ProjectDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+.ProjectDetails__summary {
+  padding: 1em 2em;
+  background-color:  $panel-header-background;
+  min-height: 100%;
+}
+.ProjectDetails__table {
+  width: 50%;
+}
+.ProjectDetails__table thead {
+  color: white;
+  color: $panel-header-color;
+  background-color: $panel-header-background;
+  text-align: left;
+  & th {
+    padding-left: 200px + $baseline;
+  }
+}
+.ProjectDetails__table td,
+.ProjectDetails__table th {
+  padding: 0 $baseline;
+}
+.ProjectDetails__table tbody th {
+  text-align: right;
+}
+.ProjectDetails__table td {
+  height: 30px;
+}
+.ProjectDetails__table tr *:first-child {
+  width: 200px;
+}
+.ProjectDetails__tabs {
+  flex: 1;
+}
+.ProjectDetails__files__message {
+  padding: $baseline;
+  color: white;
+  color: $panel-header-color;
+  background-color: $panel-header-background;
+}
+.ProjectDetails__report {
+  border: none;
+  width: 100%;
+  height: 100%;
+
+  .Rows,
+  .Columns {
+    color: $panel-header-color;
+    background-color: $panel-header-background;
+    border-bottom: none;
+  }
+
+  .Row__title,
+  .Column__title {
+    color: #fff;
+    color: $panel-header-color;
+    background-color: $panel-header-background;
+    border-color: $panel-border;
+  }
+}
+
+.Report {
+  width: 100%;
+  height: 100%;
+}
+.Report__bar {
+  @include panel-header;
+}
+.Report__content .DataGrid {
+  border-top: none;
+}
+.Report__content {
+  position: relative;
+}
+.Report__configuration {
+  width: 500px;
+  height: 100%;
+  background-color: white;
+}
+.Report__configuration__scroll {
+  overflow: auto;
+}
+.Report__configuration__step {
+  border: 1px solid $panel-border;
+  margin-bottom: 1rem;
+}
+.Report__configuration__step__content {
+  padding: $padding 0;
+}
+.Report__configuration__title {
+  font-weight: bold;
+  color: $panel-header-color;
+  background-color: $panel-header-background;
+  border-bottom: 1px solid $panel-border;
+  font-size: 0.8em;
+}
+.Report__configuration__title,
+.Report__configuration__entry {
+  line-height: 28px;
+  padding: 0 $padding;
+  align-items: center;
+  cursor: pointer;
+}
+.Report__configuration__entry {
+  transition: .15s ease;
+}
+.Report__configuration__entry:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+.Report__wget {
+}
+.Report__wget__command {
+  font-family: monospace;
+  font-size: 11px;
+  width: 500px;
+  height: 300px;
+  overflow: auto;
+}
+.Report__cell {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  line-height: 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+
+  & .Icon {
+    font-size: 1em;
+  }
+}
+
+
+/*
+ * DownloadHelp
+ */
+
+.DownloadHelp {
+  max-width: 600px;
+  margin: 1em auto;
+}
+.DownloadHelp > *:first-child {
+  margin-top: 0;
+}
+.DownloadHelp code {
+  color: $text-color;
+  background-color: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: 'Ubuntu';
+  font-size: 0.9em;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 1px 4px;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+}
+.DownloadHelp__method {
+  padding-left: 1.5em;
+  position: relative;
+}
+.DownloadHelp__method > .Icon:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.DownloadHelp__method > .fa-trophy {
+  color: #ffa81c;
+  text-shadow: 0px 0px 2px #ffcf00
+}
+.DownloadHelp .cell {
+  display: inline-block;
+  font-size: 14px;
+  width: 80px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.DownloadHelp__table {
+  & td:first-child {
+    vertical-align: top;
+    padding-right: 10px;
+  }
+  & td:last-child {
+    vertical-align: top;
+    padding: 5px 0 1em;
+    line-height: 20px;
+  }
+}
+
+
+/*
+ * Page to test components
+ */
+
+.Test {
+  flex: 1;
+  padding: 1em 2em;
+  overflow: auto;
+}
